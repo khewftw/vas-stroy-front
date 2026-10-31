@@ -1,0 +1,22 @@
+import Link from "next/link";
+
+export default function PrivacyPage() {
+  return (
+    <main className="legal-page">
+      <div className="shell legal-header">
+        <Link className="masthead-logo" href="/">
+          <img className="masthead-logo-mark" src="/vectors/vas-stroy.svg" alt="ВАС СТРОЙ" />
+        </Link>
+        <Link className="legal-back" href="/">Вернуться на главную ↗</Link>
+      </div>
+      <article className="shell legal-content">
+        <h1>Политика<br />конфиденциальности</h1>
+        <div className="legal-copy">
+          <p>Данные, указанные в форме обращения, используются только для связи с вами и подготовки коммерческого предложения и организации работ. Мы не передаём персональную информацию третьим лицам, кроме случаев, предусмотренных законодательством Российской Федерации.</p>
+          <p>Отправляя форму, вы даёте согласие на обработку имени, номера телефона и информации, которую указали в комментарии. Согласие действует до достижения цели обработки или его отзыва.</p>
+          <p>Чтобы уточнить порядок обработки данных или отозвать согласие, направьте обращение менеджеру компании через <Link href="/">главную страницу</Link>.</p>
+        </div>
+      </article>
+    </main>
+  );
+}
