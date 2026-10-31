@@ -84,8 +84,8 @@ export default function SiteHeader({ theme = "blue" }: { theme?: "blue" | "brown
         </button>
       </div>
 
-      <div className="site-menu" hidden={!menuOpen} onClick={() => setMenuOpen(false)}>
-        <div className="site-menu-inner" onClick={(event) => event.stopPropagation()}>
+      <div className="site-menu" hidden={!menuOpen} onClick={() => setMenuOpen(false)} data-lenis-prevent>
+        <div className="site-menu-inner" data-lenis-prevent onClick={(event) => event.stopPropagation()}>
           <p className="site-menu-label">Направления</p>
           <nav aria-label="Направления">
             {DIRECTIONS.map((item) => (

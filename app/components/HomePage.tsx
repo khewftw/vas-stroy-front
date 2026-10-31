@@ -42,7 +42,6 @@ export default function HomePage({ theme = "blue" }: { theme?: Theme }) {
             <div className="hero-actions">
               <BookButton className="hero-book" offer="quote">
                 <span>Получить коммерческое предложение</span>
-                <span className="hero-book-arrow" aria-hidden="true">→</span>
               </BookButton>
               <a className="hero-ghost" href="#cases">Наши объекты</a>
             </div>
