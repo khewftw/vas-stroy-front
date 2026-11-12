@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import CustomCursor from "./components/ui/CustomCursor";
+import BookingModal from "./components/BookingModal";
+import CircleVideo from "./components/CircleVideo";
+import FloatingCta from "./components/FloatingCta";
+import ScrollReset from "./components/ScrollReset";
+import SiteHeader from "./components/SiteHeader";
 import "./globals.css";
 
 const basisGrotesque = localFont({
@@ -33,7 +38,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="ru" className={`${basisGrotesque.variable} ${basisGrotesque.className} antialiased`}>
       <body>
+        <a className="skip-link" href="#main">Перейти к содержанию</a>
+        <ScrollReset />
+        <SiteHeader />
         {children}
+        <BookingModal />
+        <FloatingCta />
+        <CircleVideo />
         <CustomCursor />
       </body>
     </html>

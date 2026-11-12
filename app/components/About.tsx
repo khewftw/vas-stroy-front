@@ -1,4 +1,4 @@
-import Image from "next/image";
+import BentoGrid from "./BentoGrid";
 import { Lineicons } from "@lineiconshq/react-lineicons";
 import {
   ArrowAngularTopRightOutlined,
@@ -15,7 +15,6 @@ const STATS = [
     unit: "лет",
     label: "на рынке строительства",
     text: "Строим коммерческие и государственные объекты: от первых складов до крупных социальных комплексов. Опыт, который снижает риски заказчика.",
-    image: "/new/images/cases/case-2/02-modern_apartment_living_room_int.jpg",
     span: "c-4",
   },
   {
@@ -23,7 +22,6 @@ const STATS = [
     unit: "",
     label: "сданных объектов",
     text: "Школы, спортивные комплексы, бизнес-центры, логистические и жилые комплексы. Каждый объект сдаём с полной исполнительной документацией.",
-    image: "/new/images/hero.jpg",
     span: "c-4",
   },
   {
@@ -31,7 +29,6 @@ const STATS = [
     unit: "м²",
     label: "построено и отделано",
     text: "Общая площадь объектов компании. Берём проекты от 2 000 до 30 000 м² и ведём их от земляных работ до ввода в эксплуатацию.",
-    image: "/new/images/quiz/4.jpg",
     span: "c-4",
   },
   {
@@ -39,7 +36,6 @@ const STATS = [
     unit: "",
     label: "специалистов в штате",
     text: "Инженеры, прорабы, монтажники и собственные бригады. Не передаём ключевые работы случайным субподрядчикам.",
-    image: "/new/images/cases/case-1/06-modern_hallway_with_orange_walls.jpg",
     span: "c-4",
   },
 ] as const;
@@ -62,11 +58,9 @@ export default function About() {
           </p>
         </div>
 
-        <div className="bento" data-reveal data-reveal-stagger>
+        <BentoGrid className="bento" data-reveal data-reveal-stagger>
           {STATS.map((item) => (
-            <article key={item.label} className={`bento-card ${item.span}`} tabIndex={0}>
-              <Image className="bento-img" src={item.image} alt="" fill sizes="(max-width: 700px) 100vw, (max-width: 1000px) 50vw, 33vw" />
-              <span className="bento-shade" aria-hidden="true" />
+            <article key={item.label} className={`bento-card bento-stat ${item.span}`} tabIndex={0}>
               <div className="bento-body">
                 <p className="bento-num">
                   {item.value}
@@ -95,7 +89,7 @@ export default function About() {
               <Lineicons icon={ArrowAngularTopRightOutlined} size="100%" strokeWidth={1.2} />
             </span>
           </article>
-        </div>
+        </BentoGrid>
       </div>
     </section>
   );

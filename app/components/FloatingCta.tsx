@@ -23,6 +23,11 @@ export default function FloatingCta() {
     };
   }, []);
 
+  useEffect(() => {
+    document.body.classList.toggle("cta-on", visible);
+    return () => document.body.classList.remove("cta-on");
+  }, [visible]);
+
   return (
     <div className={`floating-cta${visible ? " is-visible" : ""}`} aria-hidden={!visible}>
       <button type="button" className="floating-cta-main" tabIndex={visible ? 0 : -1} onClick={() => openBooking("quote")}>

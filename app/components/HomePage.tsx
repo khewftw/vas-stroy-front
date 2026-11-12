@@ -1,15 +1,14 @@
 import Image from "next/image";
 import About from "./About";
 import BookButton from "./BookButton";
-import BookingModal from "./BookingModal";
 import Cases from "./Cases";
 import Experience from "./Experience";
 import FooterReveal from "./FooterReveal";
-import FloatingCta from "./FloatingCta";
 import News from "./News";
 import Services from "./Services";
+import HeroParallax from "./HeroParallax";
+import Stories from "./Stories";
 import SiteFooter from "./SiteFooter";
-import SiteHeader from "./SiteHeader";
 
 // TODO: confirm client names; logos live in public/vectors
 const CLIENTS = [
@@ -24,14 +23,11 @@ const CLIENTS = [
 // each logo twice so one set is wider than the screen; the whole set is repeated for a seamless loop
 const MARQUEE = [...CLIENTS, ...CLIENTS];
 
-export type Theme = "blue" | "brown";
-
-export default function HomePage({ theme = "blue" }: { theme?: Theme }) {
+export default function HomePage() {
   return (
-    <div data-theme={theme}>
-      <a className="skip-link" href="#main">Перейти к содержанию</a>
-      <SiteHeader theme={theme} />
+    <>
       <Experience />
+      <HeroParallax />
       <main id="main">
         <section className="hero" aria-labelledby="hero-title">
           <Image className="hero-image" src="/objects/sunlight/cover.png" alt="" fill sizes="100vw" priority />
@@ -63,16 +59,15 @@ export default function HomePage({ theme = "blue" }: { theme?: Theme }) {
           </div>
         </section>
 
+        <Stories />
         <About />
         <Services />
         <Cases />
         <News />
         <div id="contacts" aria-hidden="true" />
       </main>
-      <SiteFooter theme={theme} />
+      <SiteFooter />
       <FooterReveal />
-      <BookingModal />
-      <FloatingCta />
-    </div>
+    </>
   );
 }

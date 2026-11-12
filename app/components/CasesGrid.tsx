@@ -27,7 +27,7 @@ export default function CasesGrid({ children, ...rest }: React.HTMLAttributes<HT
 
   const onMove = (e: React.PointerEvent<HTMLDivElement>) => {
     if (e.pointerType !== "mouse") return;
-    const card = (e.target as Element).closest<HTMLElement>(".case-card");
+    const card = (e.target as Element).closest<HTMLElement>(".case-card, .news-item");
     const s = state.current;
     if (!card) return;
     const box = card.getBoundingClientRect();

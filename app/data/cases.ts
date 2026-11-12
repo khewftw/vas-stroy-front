@@ -1,5 +1,4 @@
 // TODO: confirm the figures marked below. Photos live in public/objects/<project>/.
-// Cases with a non-empty `gallery` get their own page; the rest are preview-only cards.
 export type CaseItem = {
   slug: string;
   title: string;
@@ -64,5 +63,6 @@ export const CASES: readonly CaseItem[] = [
   },
 ];
 
-export const hasPage = (item: CaseItem) => item.gallery.length > 0;
+// every case has its own storytelling page (app/data/articles.ts)
+export const hasPage = (item: CaseItem) => Boolean(item.slug);
 export const caseBySlug = (slug: string) => CASES.find((item) => item.slug === slug);

@@ -19,15 +19,16 @@ const DOCS = [
   { href: "/offer", label: "Публичная оферта" },
 ] as const;
 
-export default function SiteFooter({ theme = "blue" }: { theme?: "blue" | "brown" }) {
+export default function SiteFooter({ reveal = true, narrow = false }: { reveal?: boolean; narrow?: boolean }) {
+  const motion = reveal ? { "data-reveal": true } : {};
   return (
-    <footer className="footer">
+    <footer className={`footer${narrow ? " footer-narrow" : ""}`}>
       <div className="shell">
-        <div className="footer-grid" data-reveal data-reveal-stagger>
+        <div className="footer-grid" {...motion} {...(reveal ? { "data-reveal-stagger": true } : {})}>
           <div className="footer-brand">
             <a className="footer-logo" href="#main" aria-label="ВАС СТРОЙ / Главная">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="footer-logo-mark" src={theme === "brown" ? "/vectors/vas-stroy-brown.svg" : "/vectors/vas-stroy.svg"} alt="" />
+              <img className="footer-logo-mark" src="/vectors/vas-stroy-light.svg" alt="" />
             </a>
             <div className="footer-legal">
               <p className="footer-entity">{REQUISITES.entity}</p>
@@ -65,7 +66,7 @@ export default function SiteFooter({ theme = "blue" }: { theme?: "blue" | "brown
           </div>
         </div>
 
-        <div className="footer-bottom" data-reveal>
+        <div className="footer-bottom" {...motion}>
           <p>© {new Date().getFullYear()} ВАС СТРОЙ. Все права защищены.</p>
           <p className="footer-152">
             Обработка персональных данных осуществляется в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных».

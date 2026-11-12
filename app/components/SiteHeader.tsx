@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { openBooking } from "../lib/booking";
 import { CONTACT_LINKS, MOBILE_NAV, PAGE_NAV } from "./nav";
@@ -14,7 +16,11 @@ const DIRECTIONS = [
 
 const PHONE = CONTACT_LINKS[0];
 
-export default function SiteHeader({ theme = "blue" }: { theme?: "blue" | "brown" }) {
+// legal pages bring their own masthead
+const OWN_HEADER = ["/privacy", "/offer", "/consent"];
+
+export default function SiteHeader() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -23,7 +29,8 @@ export default function SiteHeader({ theme = "blue" }: { theme?: "blue" | "brown
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [pathname]);
+
 
   useEffect(() => {
     document.body.classList.toggle("menu-open", menuOpen);
@@ -46,13 +53,16 @@ export default function SiteHeader({ theme = "blue" }: { theme?: "blue" | "brown
     };
   }, [menuOpen]);
 
+  if (OWN_HEADER.some((path) => pathname.startsWith(path))) return null;
+  const narrow = pathname.startsWith("/cases/") || pathname.startsWith("/news/");
+
   return (
-    <header className={`site-header${scrolled ? " is-scrolled" : ""}${scrolled || menuOpen ? " is-solid" : ""}`}>
+    <header data-narrow={narrow ? "" : undefined} className={`site-header${scrolled ? " is-scrolled" : ""}${scrolled || menuOpen ? " is-solid" : ""}`}>
       <div className="site-header-inner shell">
-        <a className="site-logo" href="#main" aria-label="ВАС СТРОЙ / Главная">
+        <Link className="site-logo" href="/" aria-label="ВАС СТРОЙ / Главная">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`/vectors/vas-stroy${theme === "brown" ? "-brown" : ""}${scrolled || menuOpen ? "" : "-light"}.svg`} alt="" />
-        </a>
+          <img src={`/vectors/vas-stroy${scrolled || menuOpen ? "" : "-light"}.svg`} alt="" />
+        </Link>
 
         <div className="site-header-top">
           <nav className="site-directions" aria-label="Направления">
@@ -70,7 +80,7 @@ export default function SiteHeader({ theme = "blue" }: { theme?: "blue" | "brown
         <div className="site-header-bottom">
           <nav className="site-nav" aria-label="Навигация по сайту">
             {PAGE_NAV.map((item) => (
-              <a key={item.href} href={item.href}>{item.label}</a>
+              <Link key={item.href} href={item.href}>{item.label}</Link>
             ))}
           </nav>
           <button className="btn-primary site-cta" type="button" onClick={() => openBooking("quote")}>
@@ -95,7 +105,7 @@ export default function SiteHeader({ theme = "blue" }: { theme?: "blue" | "brown
           <p className="site-menu-label">Разделы</p>
           <nav aria-label="Разделы">
             {MOBILE_NAV.map((item) => (
-              <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</a>
+              <Link key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</Link>
             ))}
           </nav>
           <a className="site-menu-phone" href={PHONE.href}>+7 (843) 217-77-77</a>

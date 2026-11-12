@@ -1,13 +1,13 @@
 export const PAGE_NAV = [
-  { href: "#about", label: "О компании" },
-  { href: "#services", label: "Услуги" },
-  { href: "#cases", label: "Объекты" },
-  { href: "#news", label: "Новости" },
+  { href: "/#about", label: "О компании" },
+  { href: "/#services", label: "Услуги" },
+  { href: "/#cases", label: "Объекты" },
+  { href: "/#news", label: "Новости" },
 ] as const;
 
 export const MOBILE_NAV = [
   ...PAGE_NAV,
-  { href: "#contacts", label: "Контакты" },
+  { href: "/#contacts", label: "Контакты" },
 ] as const;
 
 export const FOOTER_NAV = PAGE_NAV;
