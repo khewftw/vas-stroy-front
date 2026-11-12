@@ -15,15 +15,15 @@ export type CaseItem = {
 
 export const CASES: readonly CaseItem[] = [
   {
-    slug: "zilandt-sportivnyy-zal",
-    title: "Зиландт",
+    slug: "zilant-sportivnyy-zal",
+    title: "Зилант",
     kind: "Сеть спортивных залов",
-    customer: "Зиландт",
+    customer: "Зилант",
     area: 3000,
     scope: "Отделка и инженерные системы",
     term: "3 месяца",
     year: 2025,
-    image: "/objects/zilant/cover.webp",
+    image: "/objects/zilant/cover.png",
     gallery: [],
   },
   {
